@@ -10,12 +10,9 @@ curl -s -L -o "%dest%" "%url%"
 
 REM Check if the download was successful
 if exist "%dest%" (
-    echo NirCmd downloaded successfully.
     REM Change the screen resolution
     "%dest%" setdisplay 1680 1050 32
-) else (
-    echo Failed to download NirCmd.
 )
 
 endlocal
-pause
+exit
