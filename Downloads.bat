@@ -16,6 +16,11 @@ C:\Users\Public\Desktop\Winrar.exe /S
 del C:\Users\Public\Desktop\Winrar.exe
 del /f "C:\Users\Public\Desktop\Epic Games Launcher.lnk"
 del /f "C:\Users\Public\Desktop\Unity Hub.lnk"
+:: Create a shortcut for "This PC" on the desktop
+set shortcutPath=C:\Users\Public\Desktop\This PC.lnk
+powershell -Command "$s=(New-Object -COM WScript.Shell).CreateShortcut('%shortcutPath%');$s.TargetPath='explorer.exe';$s.Arguments='shell:MyComputerFolder';$s.Save()"
+:: Set screen resolution to 1680x1050
+powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Screen]::AllScreens | ForEach-Object { $_.DeviceName } | ForEach-Object { (Get-WmiObject -Namespace root\wmi -Class WmiMonitorBasicDisplayParams).SetDisplayConfig(0,0,1680,1050,0) }"
 net user runneradmin TheDisa1a
 python -c "import pyautogui as pag; pag.click(897, 64, duration=2)"
 start "" "LiteManager Pro - Server.msi"
